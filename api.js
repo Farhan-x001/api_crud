@@ -8,13 +8,13 @@ const port = 3000;
 app.use(express.json());
 
 const validateInput = [
-  check('Id').isInt().withMessage('User ID must be an integer'), // Corrected query parameter name
+  check('Id').isInt().withMessage('User ID must be an integer'), 
 ];
 
 app.get('/fetch-data', validateInput, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    // Validation error handling
+    
     return res.status(400).json({ errors: errors.array() });
   }
 
@@ -22,7 +22,7 @@ app.get('/fetch-data', validateInput, async (req, res) => {
 
   try {
     if (!userId) {
-      // Triggering an internal server error intentionally
+      
       throw new Error('Internal Server Error');
     }
 
@@ -36,7 +36,7 @@ app.get('/fetch-data', validateInput, async (req, res) => {
     res.json(data);
   } catch (error) {
     console.error(error);
-    // Internal server error handling
+    
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
