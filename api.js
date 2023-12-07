@@ -186,7 +186,7 @@ app.post('/save-all-external-data', async (req, res) => {
 
     const data = await response.json();
 
-    // Save all records to the MongoDB database (skip duplicates)
+    // Save all records to the MongoDB database 
     await Record.insertMany(data, { ordered: false });
 
     res.status(200).json({ message: 'All records saved successfully' });
